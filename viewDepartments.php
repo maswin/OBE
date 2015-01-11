@@ -44,21 +44,21 @@
 		<br><br>
 		</span>
 		<span ng-hide="edit"></span>
-				
+	
         <table id="user-listing" class="table table-hover">
 	<tr>
 		<th>Department ID</th>
-		<th>Departmnet</th>
+		<th>Department</th>
 		<th>Edit</th>
 		<th>Delete</th>
 	</tr>
           <tr ng-repeat="dept in departments">
 		 
 			<td class="col-md-1" ng-hide="dept.dEdit">
-				  <a href="viewCourses.php?dept_name={{ dept.dID }}">{{ dept.dID }}</a>
+				  <a href="viewPrograms.php?dept_name={{ dept.dID }}">{{ dept.dID }}</a>
 			</td>
 			<td class="col-md-5" ng-hide="dept.dEdit">
-			  <a href="viewCourses.php?dept_name={{ dept.dID }}">{{ dept.dName }}</a>
+			  <a href="viewPrograms.php?dept_name={{ dept.dID }}">{{ dept.dName }}</a>
 			</td>
 			<td class="col-md-1" ng-hide="dept.dEdit">
 			<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editDepartment(dept)" >
@@ -67,13 +67,13 @@
 			</td>
 			
 			<td class="col-md-1" ng-show="dept.dEdit">
-				 <input type = "text" name="program" value="{{ dept.dID }}" class="form-control" >
+				 <input type = "text" name="dID"  class="form-control" ng-model="dept.dID">
 			</td>
 			<td class="col-md-5" ng-show="dept.dEdit">
-				<input type = "text" name="program" value="{{ dept.dName }}" class="form-control" >
+				<input type = "text" name="dName"  class="form-control" ng-model="dept.dName">
 			</td>
 			<td class="col-md-1" ng-show="dept.dEdit">
-				<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="saveDepartment(dept)" ng-disabled="dept.incomplete">
+				<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="saveDepartment(dept)" ng-disabled="incompleteE">
 				<span class="glyphicon glyphicon-ok aria-hidden="true"></span>
 				</button>
 			</td>
