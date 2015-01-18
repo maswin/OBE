@@ -97,6 +97,14 @@
 			</div>
 			
 		  </div>
+<center>
+<a class="btn btn-default" href="COAssess.php" role="button">Assessment</a>
+
+
+<a class="btn btn-default" href="report.php" role="button">Report</a>
+
+</center>
+<br>
 		</div>
 	<?php include_once("footer.php"); ?>
       </div>

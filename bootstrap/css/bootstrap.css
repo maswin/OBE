@@ -186,6 +186,7 @@ table {
 td,
 th {
   padding: 0;
+	width : auto !important;
 }
 @media print {
   * {
