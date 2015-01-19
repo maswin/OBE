@@ -98,10 +98,10 @@
 			
 		  </div>
 <center>
-<a class="btn btn-default" href="COAssess.php" role="button">Assessment</a>
+<a class="btn btn-default" href="COAssess.php?dept_name=<?php echo $_GET["dept_name"];?>&prog_name=<?php echo $_GET["prog_name"];?>&sub_name=<?php echo $_GET["sub_name"];?>" role="button">Assessment</a>
 
 
-<a class="btn btn-default" href="report.php" role="button">Report</a>
+<a class="btn btn-default" href="report.php?dept_name=<?php echo $_GET["dept_name"];?>&prog_name=<?php echo $_GET["prog_name"];?>&sub_name=<?php echo $_GET["sub_name"];?>" role="button">Report</a>
 
 </center>
 <br>

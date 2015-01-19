@@ -24,11 +24,19 @@
 	}
 	</script>
 	</head>
-	<body ng-controller="AssessmentController">
+	<body>
 		<div>
 		<div class="container" >
 		<div class="panel panel-default">
-     
+     <div class="panel-heading">
+        <span class="pull-left">
+			<b>
+				<a href="viewDepartments.php">Departments</a> >> <?php echo "<a href='viewPrograms.php?dept_name=".$_GET['dept_name']."'>".$_GET['dept_name']."</a>" ?> >> <?php echo "<a href='viewCourses.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."'>".$_GET['prog_name']."</a>" ?> >> <?php echo "<a href='viewSubjects.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."&sub_name=".$_GET['sub_name']."'>".$_GET['sub_name']."</a>" ?> >> <?php echo "<a href='COAssess.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."&sub_name=".$_GET['sub_name']."'>Assessment</a>"?>
+			</b>
+        </span>
+		<span class="pull-right">
+			
+		</span>
         <span class="clearfix"></span>
       </div>
 	
@@ -111,6 +119,7 @@
 <br>
 <center>
 <input class="btn btn-default" type="button" value="Add Row" onclick="addRow('CO_list')">
-<input class="btn btn-default" type="submit"></input>
+<a class="btn btn-default" href="copercentage.php?dept_name=<?php echo $_GET["dept_name"];?>&prog_name=<?php echo $_GET["prog_name"];?>&sub_name=<?php echo $_GET["sub_name"];?>" role="button">Submit</a>
+
 </center>
 		</form>

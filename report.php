@@ -5,15 +5,29 @@
 <link rel="stylesheet" type="text/css" href="bootstrap/css/custom.css">
 </head>
 	<body>
+	<div>
 		<div class="container">
 		<div class="panel panel-default">
       <div class="panel-heading">
         <span class="pull-left">
-          <h3><b>Report</b></h3>
-        </span>
 
-        <span class="clearfix"></span>
-      </div>
+			<b>
+				<a href="viewDepartments.php">Departments</a> >> <?php echo "<a href='viewPrograms.php?dept_name=".$_GET['dept_name']."'>".$_GET['dept_name']."</a>" ?> >> <?php echo "<a href='viewCourses.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."'>".$_GET['prog_name']."</a>" ?> >> <?php echo "<a href='viewSubjects.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."&sub_name=".$_GET['sub_name']."'>".$_GET['sub_name']."</a>" ?> >> <?php echo "<a href='report.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."&sub_name=".$_GET['sub_name']."'>Report</a>"?>
+			</b>
+        </span>
+		<span class="pull-right">
+			
+		</span>
+          <span class="clearfix"></span></div>
+	<div class="panel panel-info">
+		  <div class="panel-heading">
+		  <span class="pull-left">
+		  <b>Report</b>
+		  </span>
+		  
+		<span class="clearfix"></span>
+		</div>
+        
 
       <div class="panel-body">
 	
@@ -21,55 +35,29 @@
                 <center>
 
                     
-                    <table id="CO_percentage" class="table table-bordered">
-                        <?php
-                        include 'mapping.php';
-
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "course";
-
-                        $conn = mysqli_connect($servername, $username, $password, $dbname);
-                        $sql = "SELECT * FROM outcome";
-                        $result = mysqli_query($conn, $sql);
-
-
-                        for ($var = 1; $var <= 12; $var++) {
-                            $attribute = "PO" . $var;
-
-                            $numerator[$attribute] = 0.0;
-                            $creditSum[$attribute] = 0;
-                        }
-
-                        while ($row = mysqli_fetch_assoc($result)) {
-
-                            $numerator['PO1'] = $numerator['PO1'] + 1.0 * getValue($row["PO1"]) * $row["COAttainment"];
-                            $creditSum['PO1'] = $creditSum['PO1'] + getValue($row["PO1"]);
-
-
-                            for ($var = 1; $var <= 12; $var++) {
-                                $attribute = "PO" . $var;
-                                $numerator[$attribute] = $numerator[$attribute] + 1.0 * getValue($row[$attribute]) * $row["COAttainment"];
-                                $creditSum[$attribute] = $creditSum[$attribute] + getValue($row[$attribute]);
-                            }
-                        }
-
-                        
-                        for ($var = 1; $var <= 12; $var++) {
-                            $attribute = "PO" . $var;
-                            echo "<tr><td>" . $attribute . "</td>";
-                            if($creditSum[$attribute] == 0){
-                                echo "<td>NA</td></tr>";
-                            }else{
-                                 $res = $numerator[$attribute] / (1.0 * $creditSum[$attribute]);
-                            echo "<td>" . number_format($res, 2, '.', '') . "</td></tr>";
-                            }
-                           
-                        }
-                        echo "</table>";
-                        mysqli_close($conn);
-                        ?>
+                    <table id="PO_report" class="table table-bordered">
+                       <tr>
+	<th>PO</th>
+		<th> Percentage attainment</th>
+		</tr>
+		</thead>
+		<tr align="center">
+		<td>PO1</td>
+		<td>19.22</td>
+		</tr>
+		<tr align="center">
+		<td>PO2</td>
+		<td>24.33</td>
+		</tr>
+		<tr align="center">
+		<td>PO3</td>
+		<td>NA</td>
+		</tr>
+		<tr align="center">
+		<td>PO4</td>
+		<td>30</td>
+		</tr>
+	</body>
                     </div>
 
 
