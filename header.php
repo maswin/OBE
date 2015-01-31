@@ -46,8 +46,7 @@
 
         <div class="navbar-collapse collapse" id="header-nav-collapse-menu">
           <ul class="navbar-nav nav navbar-right">
-            <li><a href="viewDepartments.php">Home</a></li>
-			<li><a href="selectSubject.php">Program Outcome</a></li>
+            <li><a href="viewDepartments.php">View Departments</a></li>
           </ul>
         </div>
       </div>

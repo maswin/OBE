@@ -5,6 +5,7 @@
 -->
 <html ng-app="">
 	<head>
+		<base href="http://localhost/obe/viewPrograms.php?dept_name=CSE" />
 		<title>View Departments</title>
 		<?php include_once("header.php"); ?>
 	<head>
@@ -15,7 +16,11 @@
       <div class="panel-heading">
         <span class="pull-left">
 			<b>
-				<a href="viewDepartments.php">Departments</a>
+				<ol class="breadcrumb">
+					<li>
+						<a href="viewDepartments.php" class="active">Departments</a>
+					</li>
+				</ol>
 				
 			</b>
         </span>
@@ -24,6 +29,7 @@
 				<span class="glyphicon glyphicon-plus aria-hidden="true" ></span>
 				</button>
 		</span>
+		
         <span class="clearfix"></span>
       </div>
 	

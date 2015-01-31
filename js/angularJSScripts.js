@@ -99,7 +99,8 @@ function CourseController($scope) {
 		id.pEdit = false;
 	};
 }
-function programController($scope) {
+function programController($scope,$location) {
+	$scope.arr = $location.search();
 	$scope.Programs = [
 		{id:1, pID:'BE'  , pName:"BE" , pEdit:false , incomplete:false},
 		{id:2, pID:'ME'   , pName:"ME" , pEdit:false , incomplete:false},
@@ -108,7 +109,7 @@ function programController($scope) {
 	$scope.error = false;
 	$scope.incomplete = false;
 	
-	$scope.addProgram = function(id) {
+	$scope.addProgram = function(id) {	
 		if (id == 'new') {
 			$scope.edit = true;
 			$scope.incomplete = true;
@@ -141,6 +142,8 @@ function programController($scope) {
 	}
 	$scope.testEdit = function(id) {
 		//alert(id.dName);
+					alert("hi");
+		alert($scope.arr["dept_name"]);
 		id.incomplete = false;
 		if (id.edit && (!id.pName.length || !id.pID.length)) {
 			id.incomplete = true;
