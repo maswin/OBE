@@ -38,10 +38,10 @@
 		<span ng-show="edit">
 		<div class="row">
 			<div class="col-lg-3">
-				<input type = "text" name="program" value="" placeholder="Department ID" class="form-control" ng-model="dID">
+				<input type = "text" name="program" value="" placeholder="Department ID" class="form-control" ng-model="departmentID">
 			</div>
 			<div class="col-lg-6">
-				<input type = "text" name="program" value="" placeholder="Department" class="form-control" ng-model="dName">
+				<input type = "text" name="program" value="" placeholder="Department" class="form-control" ng-model="departmentName">
 			</div>
 			<div class="col-lg-3">
 				<button type="button" class="btn btn-success" aria-label="Left Align" ng-disabled="error || incomplete" ng-click="saveNewDepartment()">Add</button>
@@ -61,10 +61,10 @@
           <tr ng-repeat="dept in departments">
 		 
 			<td class="col-md-1" ng-hide="dept.dEdit">
-				  <a href="viewPrograms.php?dept_name={{ dept.dID }}">{{ dept.dID }}</a>
+				  <a href="viewPrograms.php?dept_name={{ dept.departmentID }}">{{ dept.departmentID }}</a>
 			</td>
 			<td class="col-md-5" ng-hide="dept.dEdit">
-			  <a href="viewPrograms.php?dept_name={{ dept.dID }}">{{ dept.dName }}</a>
+			  <a href="viewPrograms.php?dept_name={{ dept.departmentID }}">{{ dept.departmentName }}</a>
 			</td>
 			<td class="col-md-1" ng-hide="dept.dEdit">
 			<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editDepartment(dept)" >
@@ -73,10 +73,10 @@
 			</td>
 			
 			<td class="col-md-1" ng-show="dept.dEdit">
-				 <input type = "text" name="dID"  class="form-control" ng-model="dept.dID">
+				 <input type = "text" name="dID"  class="form-control" ng-model="dept.departmentID">
 			</td>
 			<td class="col-md-5" ng-show="dept.dEdit">
-				<input type = "text" name="dName"  class="form-control" ng-model="dept.dName">
+				<input type = "text" name="dName"  class="form-control" ng-model="dept.departmentName">
 			</td>
 			<td class="col-md-1" ng-show="dept.dEdit">
 				<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="saveDepartment(dept)" ng-disabled="incompleteE">

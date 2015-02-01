@@ -141,20 +141,31 @@ function programController($scope,$location) {
 		return id.dName;
 	}
 	$scope.testEdit = function(id) {
-		//alert(id.dName);
-					alert("hi");
-		alert($scope.arr["dept_name"]);
 		id.incomplete = false;
 		if (id.edit && (!id.pName.length || !id.pID.length)) {
 			id.incomplete = true;
 		}
 	};
 }
-function departmentController($scope) {
-	$scope.departments = [
-		{id:1, dID:'CSE'  , dName:"Computer Science" , dEdit:false , incomplete:false},
-		{id:2, dID:'EEE'   , dName:"Electrical & Electronics" , dEdit:false , incomplete:false},
-	];
+function departmentController($scope,$http) {
+	/*
+		Using $http Methods for web service call.
+		CORS - Managed at server side.	
+		[Note : Missing a space after get call caused an error which wasn't even visible in console - No idea Why :p
+		Burnt away a hell lot of my time >.<]
+	*/
+	$http.get("http://localhost:8010/edu.tce.cse.obe/rest/2015/department")
+   .success(function(response) {$scope.department = response; 
+   $scope.departments = $scope.department.department; 
+   for(dept in $scope.departments){
+	 	dept.dEdit = false;
+	 	dept.incomplete = false;
+	 }
+   });
+	
+	
+	
+	
 	$scope.edit = false;
 	$scope.error = false;
 	$scope.incomplete = false;
@@ -163,39 +174,37 @@ function departmentController($scope) {
 		if (id == 'new') {
 			$scope.edit = true;
 			$scope.incomplete = true;
-			$scope.dID = '';
-			$scope.dName = '';
+			$scope.departmentName = '';
+			$scope.departmentID = '';
 		}
 	};
 	$scope.saveNewDepartment = function() {
-		$scope.departments.push({id:3, dID:$scope.dID  , dName:$scope.dName , pEdit:false , incomplete:false});
+		$scope.departments.push({departmentID:$scope.departmentID  , departmentName:$scope.departmentName , dEdit:false , incomplete:false});
 		$scope.edit = false;
 	};
 	$scope.editDepartment = function(id) {
 		id.dEdit = true;
-		$scope.$watch(id.dName,$scope.testEdit(id));
-		$scope.$watch(id.dID,$scope.testEdit(id));
+		$scope.$watch(id.departmentName,$scope.testEdit(id));
+		$scope.$watch(id.departmentID,$scope.testEdit(id));
 	};
 	$scope.saveDepartment = function(id) {
 		id.dEdit = false;
 	};
-	//$scope.$watch('departments[0].dName',$scope.testEdit($scope.departments[0]));
-	//$scope.$watch('departments[0].dID',$scope.testEdit($scope.departments[0]));
-	$scope.$watch('dName',function() {$scope.test();});
-	$scope.$watch('dID',function() {$scope.test();});
+
+	$scope.$watch('departmentName',function() {$scope.test();});
+	$scope.$watch('departmentID',function() {$scope.test();});
 	$scope.test = function() {
 		$scope.incomplete = false;
-		if ($scope.edit && (!$scope.dName.length || !$scope.dID.length)) {
+		if ($scope.edit && (!$scope.departmentName.length || !$scope.departmentID.length)) {
 			$scope.incomplete = true;
 		}
 	};
 	$scope.getName = function(id){
-		return id.dName;
+		return id.departmentName;
 	}
 	$scope.testEdit = function(id) {
-		//alert(id.dName);
 		id.incomplete = false;
-		if (id.edit && (!id.dName.length || !id.dID.length)) {
+		if (id.edit && (!id.departmentName.length || !id.departmentID.length)) {
 			id.incomplete = true;
 		}
 	};
