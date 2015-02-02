@@ -1,4 +1,10 @@
-function SubjectController($scope) {
+function SubjectController($scope,$location,$http) {
+
+	//URL Data
+	$scope.urlDept = $location.search().dept_id;
+	$scope.urlProg = $location.search().prog_id;
+	$scope.urlCourse = $location.search().course_id;
+	
 	$scope.test = "S";
 	$scope.POCount = 5;
 	var range = [];
@@ -31,7 +37,10 @@ function SubjectController($scope) {
 		$scope.COPOInfo.splice(-1,1);
 	};
 }
-function CourseController($scope) {
+function CourseController($scope,$location,$http) {
+	//URL Data
+	$scope.urlDept = $location.search().dept_id;
+	$scope.urlProg = $location.search().prog_id;
 
 	$scope.POInfo = [
 		{id:"PO1" , description: "prog outcome1" , pEdit:false},
@@ -99,8 +108,11 @@ function CourseController($scope) {
 		id.pEdit = false;
 	};
 }
-function programController($scope,$location) {
-	$scope.arr = $location.search();
+function programController($scope,$location,$http) {
+
+	//URL Data
+	$scope.urlDept = $location.search().dept_id;
+	
 	$scope.Programs = [
 		{id:1, pID:'BE'  , pName:"BE" , pEdit:false , incomplete:false},
 		{id:2, pID:'ME'   , pName:"ME" , pEdit:false , incomplete:false},
@@ -147,24 +159,22 @@ function programController($scope,$location) {
 		}
 	};
 }
-function departmentController($scope,$http) {
+function departmentController($scope,$location,$http) {
 	/*
 		Using $http Methods for web service call.
 		CORS - Managed at server side.	
 		[Note : Missing a space after get call caused an error which wasn't even visible in console - No idea Why :p
 		Burnt away a hell lot of my time >.<]
 	*/
+
 	$http.get("http://localhost:8010/edu.tce.cse.obe/rest/2015/department")
-   .success(function(response) {$scope.department = response; 
-   $scope.departments = $scope.department.department; 
-   for(dept in $scope.departments){
-	 	dept.dEdit = false;
-	 	dept.incomplete = false;
-	 }
-   });
-	
-	
-	
+    .success(function(response) {$scope.department = response; 
+		$scope.departments = $scope.department.department; 
+		for(dept in $scope.departments){
+			dept.dEdit = false;
+			dept.incomplete = false;
+		}
+    });
 	
 	$scope.edit = false;
 	$scope.error = false;

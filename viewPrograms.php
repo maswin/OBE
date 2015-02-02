@@ -15,7 +15,7 @@
       <div class="panel-heading">
         <span class="pull-left">
 			<b>
-				<a href="viewDepartments.php">Departments</a> >> <?php echo "<a href='viewPrograms.php?dept_name=".$_GET['dept_name']."'>".$_GET['dept_name']."</a>" ?> 				
+				<a href="viewDepartments.php">Departments</a> >> <a href="viewPrograms.php#?dept_id={{urlDept}}">{{urlDept}}</a>				
 			
 			</b>
         </span>
@@ -81,10 +81,10 @@
           <tr ng-repeat="prog in Programs">
 		 
 			<td class="col-md-1" ng-hide="prog.dEdit">
-				  <a href="viewCourses.php?prog_name={{ prog.pID }}&dept_name=<?php echo $_GET["dept_name"];?>">{{ prog.pID }}</a>
+				<a href="viewCourses.php#?dept_id={{ urlDept }}&prog_id={{ prog.pID }}">{{ prog.pID }}</a>
 			</td>
 			<td class="col-md-5" ng-hide="prog.dEdit">
-			  <a href="viewCourses.php?prog_name={{ prog.pID }}&dept_name=<?php echo $_GET["dept_name"];?>">{{ prog.pName }}</a>
+				<a href="viewCourses.php#?dept_id={{ urlDept }}&prog_id={{ prog.pID }}">{{ prog.pName }}</a>
 			</td>
 			<td class="col-md-1" ng-hide="prog.dEdit">
 			<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editProgram(prog)" >

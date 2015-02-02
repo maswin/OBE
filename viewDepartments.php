@@ -61,10 +61,10 @@
           <tr ng-repeat="dept in departments">
 		 
 			<td class="col-md-1" ng-hide="dept.dEdit">
-				  <a href="viewPrograms.php?dept_name={{ dept.departmentID }}">{{ dept.departmentID }}</a>
+				  <a href="viewPrograms.php#?dept_id={{ dept.departmentID }}">{{ dept.departmentID }}</a>
 			</td>
 			<td class="col-md-5" ng-hide="dept.dEdit">
-			  <a href="viewPrograms.php?dept_name={{ dept.departmentID }}">{{ dept.departmentName }}</a>
+			  <a href="viewPrograms.php#?dept_id={{ dept.departmentID }}">{{ dept.departmentName }}</a>
 			</td>
 			<td class="col-md-1" ng-hide="dept.dEdit">
 			<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editDepartment(dept)" >

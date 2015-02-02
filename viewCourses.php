@@ -15,7 +15,7 @@
       <div class="panel-heading">
         <span class="pull-left">
 			<b>
-				<a href="viewDepartments.php">Departments</a> >> <?php echo "<a href='viewPrograms.php?dept_name=".$_GET['dept_name']."'>".$_GET['dept_name']."</a>" ?> >> <?php echo "<a href='viewCourses.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."'>".$_GET['prog_name']."</a>" ?>	
+				<a href="viewDepartments.php">Departments</a> >> <a href="viewPrograms.php#?dept_id={{urlDept}}">{{urlDept}}</a> >> <a href="viewCourses.php#?dept_id={{ urlDept }}&prog_id={{ urlProg }}">{{ urlProg }}</a>	
 			</b>
         </span>
 		
@@ -114,10 +114,10 @@
           <tr ng-repeat="course in Courses">
 		 
 			<td class="col-md-1" ng-hide="course.dEdit">
-				  <a href="viewSubjects.php?sub_name={{ course.cID }}&dept_name=<?php echo $_GET["dept_name"];?>&prog_name=<?php echo $_GET["prog_name"];?>">{{ course.cID }}</a>
+				<a href="viewSubjects.php#?dept_id={{ urlDept }}&prog_id={{ urlProg }}&course_id={{ course.cID }}">{{ course.cID }}</a>
 			</td>
 			<td class="col-md-5" ng-hide="course.dEdit">
-			  <a href="viewSubjects.php?sub_name={{ course.cID }}&dept_name=<?php echo $_GET["dept_name"];?>&prog_name=<?php echo $_GET["prog_name"];?>">{{ course.cName }}</a>
+				<a href="viewSubjects.php#?dept_id={{ urlDept }}&prog_id={{ urlProg }}&course_id={{ course.cID }}">{{ course.cName }}</a>
 			</td>
 			<td class="col-md-1" ng-hide="course.dEdit">
 			<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="editCourse(course)" >

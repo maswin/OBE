@@ -15,7 +15,7 @@
       <div class="panel-heading">
         <span class="pull-left">
 			<b>
-				<a href="viewDepartments.php">Departments</a> >> <?php echo "<a href='viewPrograms.php?dept_name=".$_GET['dept_name']."'>".$_GET['dept_name']."</a>" ?> >> <?php echo "<a href='viewCourses.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."'>".$_GET['prog_name']."</a>" ?> >> <?php echo "<a href='viewSubjects.php?dept_name=".$_GET['dept_name']."&prog_name=".$_GET['prog_name']."&sub_name=".$_GET['sub_name']."'>".$_GET['sub_name']."</a>" ?>
+				<a href="viewDepartments.php">Departments</a> >> <a href="viewPrograms.php#?dept_id={{urlDept}}">{{urlDept}}</a> >> <a href="viewCourses.php#?dept_id={{ urlDept }}&prog_id={{ urlProg }}">{{ urlProg }}</a> >> <a href="viewSubjects.php#?dept_id={{ urlDept }}&prog_id={{ urlProg }}&course_id={{ urlCourse }}">{{ urlCourse }}</a>
 			</b>
         </span>
 		<span class="pull-right">
