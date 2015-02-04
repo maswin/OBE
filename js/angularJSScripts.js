@@ -166,16 +166,18 @@ function departmentController($scope,$location,$http) {
 		[Note : Missing a space after get call caused an error which wasn't even visible in console - No idea Why :p
 		Burnt away a hell lot of my time >.<]
 	*/
-
-	$http.get("http://localhost:8010/edu.tce.cse.obe/rest/2015/department")
-    .success(function(response) {$scope.department = response; 
-		$scope.departments = $scope.department.department; 
-		for(dept in $scope.departments){
-			dept.dEdit = false;
-			dept.incomplete = false;
-		}
-    });
-	
+	$scope.loadDepartment = function(){
+		$http.get("http://localhost:8010/edu.tce.cse.obe/rest/2015/department")
+		.success(function(response) {$scope.department = response; 
+			$scope.departments = $scope.department.department; 
+			for(dept in $scope.departments){
+				dept.dEdit = false;
+				dept.incomplete = false;
+				dept.hold = "";
+			}
+		});
+	};
+	$scope.loadDepartment();
 	$scope.edit = false;
 	$scope.error = false;
 	$scope.incomplete = false;
@@ -188,21 +190,76 @@ function departmentController($scope,$location,$http) {
 			$scope.departmentID = '';
 		}
 	};
+	$scope.$watch('departmentName',function() {$scope.test();});
+	$scope.$watch('departmentID',function() {$scope.test();});
+	
+	
 	$scope.saveNewDepartment = function() {
-		$scope.departments.push({departmentID:$scope.departmentID  , departmentName:$scope.departmentName , dEdit:false , incomplete:false});
+		//Webservice Put Call
+		var url = 'http://localhost:8010/edu.tce.cse.obe/rest/2015/department';
+		var data = {
+				"departmentID":$scope.departmentID ,
+				"departmentName":$scope.departmentName,
+				"year":"2015"
+			};
+		var config = {
+			headers: {
+			  'Content-Type': 'Application/JSON',
+			},
+		};
+		$http.put(url,data,config).success(
+			function(data, status, headers, config){
+				$scope.loadDepartment();
+			}).error(
+			function(data, status, headers, config){
+				alert("Unable to Add department");
+			}		
+		);
+
+		//Testing Purpose
+		//$scope.departments.push({departmentID:$scope.departmentID  , departmentName:$scope.departmentName , dEdit:false , incomplete:false});
 		$scope.edit = false;
 	};
+	
 	$scope.editDepartment = function(id) {
+		id.hold = id.departmentID;
 		id.dEdit = true;
-		$scope.$watch(id.departmentName,$scope.testEdit(id));
-		$scope.$watch(id.departmentID,$scope.testEdit(id));
 	};
 	$scope.saveDepartment = function(id) {
+		var url = 'http://localhost:8010/edu.tce.cse.obe/rest/2015/department/'+id.hold;
+		var data = {
+				"departmentID":id.departmentID ,
+				"departmentName":id.departmentName,
+				"year":"2015"
+			};
+		var config = {
+			headers: {
+			  'Content-Type': 'Application/JSON',
+			},
+		};
+		$http.put(url,data,config).success(
+			function(data, status, headers, config){
+				$scope.loadDepartment();
+			}).error(
+			function(data, status, headers, config){
+				alert("Unable to Edit department");
+			}		
+		);
 		id.dEdit = false;
 	};
 
-	$scope.$watch('departmentName',function() {$scope.test();});
-	$scope.$watch('departmentID',function() {$scope.test();});
+	$scope.deleteDepartment = function(id){
+		var url = 'http://localhost:8010/edu.tce.cse.obe/rest/2015/department/'+id.departmentID;
+		$http.delete(url).success(
+			function(data, status, headers, config){
+				$scope.loadDepartment();
+			}).error(
+			function(data, status, headers, config){
+				alert("Unable to Delete department"+status);
+			}		
+		);
+	};
+	
 	$scope.test = function() {
 		$scope.incomplete = false;
 		if ($scope.edit && (!$scope.departmentName.length || !$scope.departmentID.length)) {
