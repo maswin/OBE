@@ -84,7 +84,7 @@
 				</button>
 			</td>
 			
-			<td class="col-md-1">
+			<td class="col-md-1"> 
 				<button type="button" class="btn btn-danger" aria-label="Left Align" ng-click="deleteDepartment(dept)">
 				<span class="glyphicon glyphicon-trash aria-hidden="true"></span>
 				</button>	
