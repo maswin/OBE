@@ -168,8 +168,10 @@ function departmentController($scope,$location,$http) {
 	*/
 	$scope.loadDepartment = function(){
 		$http.get("http://localhost:8010/edu.tce.cse.obe/rest/2015/department")
-		.success(function(response) {$scope.department = response; 
-			$scope.departments = $scope.department.department; 
+		.success(function(response) {
+			$scope.departments = response.department; 
+			if(!$.isArray($scope.departments))
+				$scope.departments = new Array($scope.departments);
 			for(dept in $scope.departments){
 				dept.dEdit = false;
 				dept.incomplete = false;
